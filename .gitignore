@@ -1,3 +1,12 @@
+# 忽略所有服务的 data 目录
+# 这样写可以同时忽略 redis/data, mysql/data, kafka/data 等
+**/data/
+
+# 忽略系统生成的临时文件 (可选，但在 Windows 上很有用)
+.DS_Store
+Thumbs.db
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]

@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  # --- Redis 服务 ---
+  redis:
+    image: redis:7.0
+    container_name: lab-redis  # 改个通用的名字
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      # 注意这里：数据存放在当前目录下的 redis/data 子文件夹中
+      - ./redis/data:/data
+    command: redis-server --appendonly yes --requirepass "123456"
+    networks:
+      - lab-network
+
+  # --- 未来在这里添加 MySQL ---
+  # mysql:
+  #   image: mysql:8.0
+  #   ...
+
+  # --- 未来在这里添加 Kafka ---
+  # kafka:
+  #   image: bitnami/kafka:latest
+  #   ...
+
+# 定义一个自定义网络，以后你的 Redis、MySQL、Kafka 可以直接通过容器名互相访问
+networks:
+  lab-network:
+    driver: bridge
